@@ -12,8 +12,16 @@ public class JwtAdapter(IConfiguration config) : IJwtPort
 {
     public string GerarToken(Usuario usuario)
     {
-        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["Jwt:SecretKey"]!));
+        var secretKey = config["Jwt:SecretKey"]
+            ?? throw new InvalidOperationException("Jwt:SecretKey não configurada.");
+
+        if (secretKey.Length < 32)
+            throw new InvalidOperationException("Jwt:SecretKey deve ter no mínimo 32 caracteres.");
+
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+        var expiration = double.TryParse(config["Jwt:ExpirationHours"], out var h) ? h : 24;
 
         var claims = new[]
         {
@@ -27,7 +35,7 @@ public class JwtAdapter(IConfiguration config) : IJwtPort
             issuer: config["Jwt:Issuer"],
             audience: config["Jwt:Audience"],
             claims: claims,
-            expires: DateTime.UtcNow.AddHours(double.Parse(config["Jwt:ExpirationHours"]!)),
+            expires: DateTime.UtcNow.AddHours(expiration),
             signingCredentials: creds
         );
 

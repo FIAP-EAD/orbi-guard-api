@@ -22,12 +22,14 @@ public class ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddlewa
     {
         var (status, message) = ex switch
         {
-            NaoEncontradoException e  => (StatusCodes.Status404NotFound,         e.Message),
-            NaoAutorizadoException e  => (StatusCodes.Status401Unauthorized,     e.Message),
-            ConflitoException e       => (StatusCodes.Status409Conflict,         e.Message),
-            ArgumentException e       => (StatusCodes.Status400BadRequest,       e.Message),
-            InvalidOperationException e => (StatusCodes.Status422UnprocessableEntity, e.Message),
-            _                         => (StatusCodes.Status500InternalServerError, "Erro interno no servidor.")
+            NaoEncontradoException e    => (StatusCodes.Status404NotFound,              e.Message),
+            NaoAutorizadoException e    => (StatusCodes.Status401Unauthorized,          e.Message),
+            ConflitoException e         => (StatusCodes.Status409Conflict,              e.Message),
+            ArgumentException e         => (StatusCodes.Status400BadRequest,            e.Message),
+            InvalidOperationException e => (StatusCodes.Status422UnprocessableEntity,   e.Message),
+
+            // Detalhes internos nunca chegam ao cliente — apenas log no servidor.
+            _ => (StatusCodes.Status500InternalServerError, "Ocorreu um erro interno. Tente novamente.")
         };
 
         context.Response.ContentType = "application/json";

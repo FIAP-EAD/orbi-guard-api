@@ -27,6 +27,7 @@ public class OcorrenciaRepository(AppDbContext context) : IOcorrenciaRepository
 
     public async Task<Ocorrencia> AtualizarAsync(Ocorrencia ocorrencia)
     {
+        context.Ocorrencias.Update(ocorrencia);
         await context.SaveChangesAsync();
         return ocorrencia;
     }

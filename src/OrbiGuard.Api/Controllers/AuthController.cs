@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 using OrbiGuard.Application.DTOs.Requests;
 using OrbiGuard.Application.Ports.In;
 
@@ -6,6 +7,7 @@ namespace OrbiGuard.Api.Controllers;
 
 [ApiController]
 [Route("api/auth")]
+[EnableRateLimiting("auth")]
 public class AuthController(IAuthUseCase authUseCase) : ControllerBase
 {
     [HttpPost("login")]
@@ -19,6 +21,6 @@ public class AuthController(IAuthUseCase authUseCase) : ControllerBase
     public async Task<IActionResult> Register([FromBody] RegisterRequest request)
     {
         var response = await authUseCase.RegistrarAsync(request);
-        return CreatedAtAction(nameof(Login), response);
+        return CreatedAtAction(nameof(Login), null, response);
     }
 }

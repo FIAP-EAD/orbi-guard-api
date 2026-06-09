@@ -26,6 +26,7 @@ public class AbrigoRepository(AppDbContext context) : IAbrigoRepository
 
     public async Task<Abrigo> AtualizarAsync(Abrigo abrigo)
     {
+        context.Abrigos.Update(abrigo);
         await context.SaveChangesAsync();
         return abrigo;
     }

@@ -39,6 +39,8 @@ public class OcorrenciaService(IOcorrenciaRepository ocorrenciaRepo) : IOcorrenc
             case StatusOcorrencia.EmAtendimento: ocorrencia.IniciarAtendimento(); break;
             case StatusOcorrencia.Resolvida:     ocorrencia.Resolver();           break;
             case StatusOcorrencia.Cancelada:     ocorrencia.Cancelar();           break;
+            default:
+                throw new ArgumentException($"Transição para '{request.Status}' não é permitida.");
         }
 
         var atualizada = await ocorrenciaRepo.AtualizarAsync(ocorrencia);

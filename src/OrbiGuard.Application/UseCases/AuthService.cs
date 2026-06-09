@@ -4,6 +4,7 @@ using OrbiGuard.Application.Exceptions;
 using OrbiGuard.Application.Ports.In;
 using OrbiGuard.Application.Ports.Out;
 using OrbiGuard.Domain.Entities;
+using OrbiGuard.Domain.Enums;
 
 namespace OrbiGuard.Application.UseCases;
 
@@ -25,7 +26,8 @@ public class AuthService(IUsuarioRepository usuarioRepo, IJwtPort jwt, IPassword
         if (await usuarioRepo.ObterPorEmailAsync(request.Email) is not null)
             throw new ConflitoException("E-mail já cadastrado.");
 
-        var usuario = new Usuario(request.Nome, request.Email, hasher.Hash(request.Senha), request.Perfil);
+        // Perfil fixado em Usuario — elevação de privilégio exige endpoint admin dedicado.
+        var usuario = new Usuario(request.Nome, request.Email, hasher.Hash(request.Senha), PerfilUsuario.Usuario);
         var salvo = await usuarioRepo.SalvarAsync(usuario);
 
         return new AuthResponse(jwt.GerarToken(salvo), salvo.Id, salvo.Nome, salvo.Perfil);
