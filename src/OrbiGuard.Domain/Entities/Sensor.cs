@@ -24,6 +24,8 @@ public class Sensor
         CriadoEm = DateTime.UtcNow;
     }
 
+    protected Sensor() { Localizacao = null!; }
+
     public void Ativar() => Status = StatusSensor.Ativo;
     public void Desativar() => Status = StatusSensor.Inativo;
     public void ColocarEmManutencao() => Status = StatusSensor.Manutencao;

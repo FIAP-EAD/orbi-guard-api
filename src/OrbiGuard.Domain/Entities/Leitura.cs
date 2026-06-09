@@ -18,4 +18,6 @@ public class Leitura
         Unidade = unidade;
         DataHora = dataHora ?? DateTime.UtcNow;
     }
+
+    protected Leitura() { Unidade = null!; }
 }

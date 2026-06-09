@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrbiGuard.Domain", "src\Orb
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrbiGuard.Application", "src\OrbiGuard.Application\OrbiGuard.Application.csproj", "{D3E2A257-D6B8-4D1F-A27C-2CBBDB730317}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrbiGuard.Infrastructure", "src\OrbiGuard.Infrastructure\OrbiGuard.Infrastructure.csproj", "{7B305A6C-C06A-4575-BCCD-4DF08572E730}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrbiGuard.Api", "src\OrbiGuard.Api\OrbiGuard.Api.csproj", "{9F867C5F-442D-46EC-8BF9-F6EAD59EB6A7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +47,30 @@ Global
 		{D3E2A257-D6B8-4D1F-A27C-2CBBDB730317}.Release|x64.Build.0 = Release|Any CPU
 		{D3E2A257-D6B8-4D1F-A27C-2CBBDB730317}.Release|x86.ActiveCfg = Release|Any CPU
 		{D3E2A257-D6B8-4D1F-A27C-2CBBDB730317}.Release|x86.Build.0 = Release|Any CPU
+		{7B305A6C-C06A-4575-BCCD-4DF08572E730}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B305A6C-C06A-4575-BCCD-4DF08572E730}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B305A6C-C06A-4575-BCCD-4DF08572E730}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7B305A6C-C06A-4575-BCCD-4DF08572E730}.Debug|x64.Build.0 = Debug|Any CPU
+		{7B305A6C-C06A-4575-BCCD-4DF08572E730}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7B305A6C-C06A-4575-BCCD-4DF08572E730}.Debug|x86.Build.0 = Debug|Any CPU
+		{7B305A6C-C06A-4575-BCCD-4DF08572E730}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B305A6C-C06A-4575-BCCD-4DF08572E730}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B305A6C-C06A-4575-BCCD-4DF08572E730}.Release|x64.ActiveCfg = Release|Any CPU
+		{7B305A6C-C06A-4575-BCCD-4DF08572E730}.Release|x64.Build.0 = Release|Any CPU
+		{7B305A6C-C06A-4575-BCCD-4DF08572E730}.Release|x86.ActiveCfg = Release|Any CPU
+		{7B305A6C-C06A-4575-BCCD-4DF08572E730}.Release|x86.Build.0 = Release|Any CPU
+		{9F867C5F-442D-46EC-8BF9-F6EAD59EB6A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F867C5F-442D-46EC-8BF9-F6EAD59EB6A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F867C5F-442D-46EC-8BF9-F6EAD59EB6A7}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{9F867C5F-442D-46EC-8BF9-F6EAD59EB6A7}.Debug|x64.Build.0 = Debug|Any CPU
+		{9F867C5F-442D-46EC-8BF9-F6EAD59EB6A7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9F867C5F-442D-46EC-8BF9-F6EAD59EB6A7}.Debug|x86.Build.0 = Debug|Any CPU
+		{9F867C5F-442D-46EC-8BF9-F6EAD59EB6A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F867C5F-442D-46EC-8BF9-F6EAD59EB6A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F867C5F-442D-46EC-8BF9-F6EAD59EB6A7}.Release|x64.ActiveCfg = Release|Any CPU
+		{9F867C5F-442D-46EC-8BF9-F6EAD59EB6A7}.Release|x64.Build.0 = Release|Any CPU
+		{9F867C5F-442D-46EC-8BF9-F6EAD59EB6A7}.Release|x86.ActiveCfg = Release|Any CPU
+		{9F867C5F-442D-46EC-8BF9-F6EAD59EB6A7}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,5 +78,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{C6AA19F8-F18A-451D-9646-7B830C6651DD} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 		{D3E2A257-D6B8-4D1F-A27C-2CBBDB730317} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+		{7B305A6C-C06A-4575-BCCD-4DF08572E730} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+		{9F867C5F-442D-46EC-8BF9-F6EAD59EB6A7} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 	EndGlobalSection
 EndGlobal

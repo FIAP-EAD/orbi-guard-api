@@ -24,6 +24,8 @@ public class Abrigo
         Longitude = longitude;
     }
 
+    protected Abrigo() { Nome = null!; }
+
     public void AtualizarOcupacao(int novaOcupacao)
     {
         if (novaOcupacao < 0) throw new ArgumentException("Ocupação não pode ser negativa.");

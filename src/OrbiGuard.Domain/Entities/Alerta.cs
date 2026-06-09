@@ -23,5 +23,7 @@ public class Alerta
         CriadoEm = DateTime.UtcNow;
     }
 
+    protected Alerta() { Mensagem = null!; }
+
     public void Desativar() => Ativo = false;
 }

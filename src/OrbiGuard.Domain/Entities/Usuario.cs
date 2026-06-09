@@ -24,6 +24,8 @@ public class Usuario
         CriadoEm = DateTime.UtcNow;
     }
 
+    protected Usuario() { Nome = null!; Email = null!; SenhaHash = null!; }
+
     public void AlterarSenha(string novaSenhaHash)
     {
         if (string.IsNullOrWhiteSpace(novaSenhaHash)) throw new ArgumentException("Senha inválida.");

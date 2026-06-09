@@ -35,6 +35,8 @@ public class Ocorrencia
         DataHora = DateTime.UtcNow;
     }
 
+    protected Ocorrencia() { Localizacao = null!; Descricao = null!; }
+
     public void IniciarAtendimento()
     {
         if (Status != StatusOcorrencia.Aberta)
