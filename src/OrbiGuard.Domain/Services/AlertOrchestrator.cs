@@ -1,5 +1,6 @@
 using OrbiGuard.Domain.Entities;
 using OrbiGuard.Domain.Enums;
+using OrbiGuard.Domain.ValueObjects;
 
 namespace OrbiGuard.Domain.Services;
 
@@ -12,9 +13,7 @@ public class AlertOrchestrator
         _riskAnalyzer = riskAnalyzer;
     }
 
-    public (Ocorrencia ocorrencia, Alerta alerta)? ProcessarLeitura(
-        Leitura leitura,
-        Sensor sensor)
+    public (Ocorrencia ocorrencia, AlertaInfo alertaInfo)? ProcessarLeitura(Leitura leitura, Sensor sensor)
     {
         if (!_riskAnalyzer.EhCritico(leitura, sensor.Tipo))
             return null;
@@ -31,16 +30,6 @@ public class AlertOrchestrator
             descricao: GerarDescricao(sensor, leitura, gravidade)
         );
 
-        // A criação do Alerta depende do Id da Ocorrencia ser persistido.
-        // O use case é responsável por persistir a Ocorrencia antes de criar o Alerta.
-        // Aqui retornamos ambos para o use case coordenar a persistência.
-        var alerta = CriarAlerta(ocorrencia, gravidade);
-
-        return (ocorrencia, alerta);
-    }
-
-    private static Alerta CriarAlerta(Ocorrencia ocorrencia, GravidadeOcorrencia gravidade)
-    {
         var nivel = gravidade switch
         {
             GravidadeOcorrencia.Critica => NivelAlerta.Critico,
@@ -49,10 +38,12 @@ public class AlertOrchestrator
             _                           => NivelAlerta.Baixo
         };
 
-        var mensagem = $"Alerta {nivel}: {ocorrencia.Tipo} detectado em {ocorrencia.Localizacao}.";
+        var alertaInfo = new AlertaInfo(
+            Mensagem: $"Alerta {nivel}: {tipoOcorrencia} detectado em {sensor.Localizacao}.",
+            Nivel: nivel
+        );
 
-        // OcorrenciaId será atribuído pelo use case após persistência.
-        return new Alerta(ocorrenciaId: 0, mensagem, nivel);
+        return (ocorrencia, alertaInfo);
     }
 
     private static string GerarDescricao(Sensor sensor, Leitura leitura, GravidadeOcorrencia gravidade) =>
